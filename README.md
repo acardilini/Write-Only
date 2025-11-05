@@ -2,6 +2,10 @@
 
 A minimalist, distraction-free web application built to help writers achieve a state of flow by removing the ability to edit. This project is built on the "write-only" principle to force forward momentum and bypass your inner critic.
 
+## 🚀 Live Demo
+
+**https://acardilini.github.io/Write-Only/**
+
 ## Project Goal
 
 This application helps writers overcome perfectionism and maintain creative flow by disabling backspace and delete keys during the writing process. It's designed to encourage unfiltered creation and build consistent daily writing habits through visual feedback.
@@ -141,6 +145,19 @@ Your writing is stored **only** in your browser's local IndexedDB. The applicati
 - Will lose data if browser cache is cleared
 
 **Important**: Always export important work to Google Drive (when available) or copy to a safe location.
+
+## Deployment
+
+The application is configured for automatic deployment to GitHub Pages.
+
+### Quick Deploy
+
+1. **Enable GitHub Pages** in repository Settings → Pages
+2. Set Source to "GitHub Actions"
+3. Push to the `main` branch
+4. Your app will be live at `https://acardilini.github.io/Write-Only/`
+
+For detailed deployment instructions, troubleshooting, and manual deployment options, see **[DEPLOY.md](./DEPLOY.md)**.
 
 ## License
 
