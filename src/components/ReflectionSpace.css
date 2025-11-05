@@ -1,0 +1,201 @@
+.reflection-space {
+  min-height: 100vh;
+  background-color: #fdfdf9;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #888;
+  font-size: 1rem;
+}
+
+.reflection-header {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.reflection-header h1 {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.data-warning {
+  background-color: #fff9e6;
+  border-left: 3px solid #f0ad4e;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+}
+
+.data-warning p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #856404;
+  line-height: 1.6;
+}
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.heatmap-container {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.sessions-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sessions-container h2 {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #999;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.session-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.session-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.session-name {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.session-date {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+.session-preview {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.session-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+.meta-item {
+  white-space: nowrap;
+}
+
+.meta-separator {
+  color: #ddd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reflection-space {
+    padding: 1rem;
+  }
+
+  .reflection-header h1 {
+    font-size: 2rem;
+  }
+
+  .stats-overview {
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .session-card {
+    padding: 1rem;
+  }
+
+  .session-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

@@ -1,0 +1,208 @@
+.heatmap-calendar {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.heatmap-header h3 {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-label {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.legend-boxes {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.legend-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid #e8e8e8;
+}
+
+.legend-box.level-0 {
+  background-color: #f0f0f0;
+}
+
+.legend-box.level-1 {
+  background-color: #c6e48b;
+}
+
+.legend-box.level-2 {
+  background-color: #7bc96f;
+}
+
+.legend-box.level-3 {
+  background-color: #239a3b;
+}
+
+.legend-box.level-4 {
+  background-color: #196127;
+}
+
+.heatmap-grid {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.weekday-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-right: 0.5rem;
+}
+
+.weekday-label {
+  height: 12px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.625rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.heatmap-weeks {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.heatmap-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.heatmap-day.empty {
+  visibility: hidden;
+}
+
+.heatmap-day.level-0 {
+  background-color: #f0f0f0;
+}
+
+.heatmap-day.level-1 {
+  background-color: #c6e48b;
+}
+
+.heatmap-day.level-2 {
+  background-color: #7bc96f;
+}
+
+.heatmap-day.level-3 {
+  background-color: #239a3b;
+}
+
+.heatmap-day.level-4 {
+  background-color: #196127;
+}
+
+.heatmap-day:hover:not(.empty) {
+  border-color: #333;
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.heatmap-tooltip {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.heatmap-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.tooltip-date {
+  font-weight: 600;
+  margin-bottom: 0.125rem;
+}
+
+.tooltip-count {
+  color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heatmap-calendar {
+    padding: 1rem;
+  }
+
+  .heatmap-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heatmap-header h3 {
+    font-size: 1.125rem;
+  }
+
+  .heatmap-grid {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .heatmap-day,
+  .legend-box {
+    width: 10px;
+    height: 10px;
+  }
+
+  .weekday-label {
+    height: 10px;
+    font-size: 0.5rem;
+  }
+}
