@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getAllSessions, getWordCountsByDate } from '../utils/db';
 import SessionViewer from './SessionViewer';
+import HeatmapCalendar from './HeatmapCalendar';
 import './ReflectionSpace.css';
 
 export default function ReflectionSpace() {
   const [sessions, setSessions] = useState([]);
   const [selectedSession, setSelectedSession] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [wordCountsByDate, setWordCountsByDate] = useState({});
   const [stats, setStats] = useState({
     totalSessions: 0,
     totalWords: 0,
@@ -23,6 +25,10 @@ export default function ReflectionSpace() {
       setLoading(true);
       const allSessions = await getAllSessions();
       setSessions(allSessions);
+
+      // Load word counts by date for heatmap
+      const wordCounts = await getWordCountsByDate();
+      setWordCountsByDate(wordCounts);
 
       // Calculate stats
       const totalWords = allSessions.reduce((sum, s) => sum + (s.wordCount || 0), 0);
@@ -116,6 +122,12 @@ export default function ReflectionSpace() {
           </div>
         )}
       </div>
+
+      {sessions.length > 0 && (
+        <div className="heatmap-container">
+          <HeatmapCalendar wordCountsByDate={wordCountsByDate} />
+        </div>
+      )}
 
       <div className="sessions-container">
         <h2>Session Log</h2>

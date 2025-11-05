@@ -71,6 +71,11 @@
   letter-spacing: 0.05em;
 }
 
+.heatmap-container {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
 .sessions-container {
   max-width: 900px;
   margin: 0 auto;
