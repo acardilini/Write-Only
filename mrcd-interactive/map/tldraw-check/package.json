@@ -1,0 +1,16 @@
+{
+  "name": "mrcd-tldraw-check",
+  "private": true,
+  "description": "Renders a tldraw connector script in a local copy of tldraw, so a sketch can be checked before (or instead of) sending it to the shared canvas.",
+  "scripts": {
+    "build": "mkdir -p www && cp index.html www/ && esbuild main.jsx --bundle --outdir=www --jsx=automatic --loader:.woff2=file --loader:.woff=file --loader:.png=file --loader:.svg=file --loader:.json=file --asset-names=[name] --define:process.env.NODE_ENV='\"production\"' --minify --log-level=warning",
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "@tldraw/assets": "5.6.0",
+    "esbuild": "0.25.10",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "tldraw": "5.6.0"
+  }
+}

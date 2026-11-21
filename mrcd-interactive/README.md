@@ -14,7 +14,8 @@ Phases 1–4 are done: review of previous attempts, intention, parameters, and a
 | The Saturday Walk, prototype v0.3 (encounters 1–3 of 8) | Live; walked through twice | [Published prototype](https://claude.ai/artifact/WYb8UcJkaHX2DjDeDjCYsW). Source in [`prototype/`](prototype/) |
 | Style tiles: survey map, two-colour print, transit line | Not taken forward: too busy and tied to familiar genres | [Style tiles canvas](https://claude.ai/artifact/LCtW812b6jozPcmrWAG4y3) |
 | Map starter kit (Inkscape SVG with named parts) | Ready | [`map/mrcd-map-starter.svg`](map/mrcd-map-starter.svg) |
-| Base-map sketches, round 1 | **Waiting for a choice** | [`map/base-map-sketches.png`](map/base-map-sketches.png) and `.svg` |
+| Base-map sketches, round 1 | Superseded by sketch 5 (built on sketch 4 and the trail-map reference) | [`map/base-map-sketches.png`](map/base-map-sketches.png) and `.svg` |
+| Sketch 5: a trail through one landscape, with one walker's route | **Waiting for feedback** | [`map/sketch-05-trail-landscape.png`](map/sketch-05-trail-landscape.png); editable on the shared tldraw canvas `9p8xgkc7`; script [`map/sketch-05-tldraw.js`](map/sketch-05-tldraw.js) |
 
 The claude.ai links are private to the project owner unless shared from each page's Share menu.
 
@@ -27,10 +28,25 @@ All four lay out the full model as a pared-back line map, in black and white, re
 3. **The loop:** the walk is a loop; justifications lead back to it, change leaves it.
 4. **A trail through a landscape:** woods are prevention, crossing the river is discomfort, paths over the hills are justifications that branch and rejoin, and one path leads off to "change".
 
+### Sketch 5: a trail through one landscape (21 November 2026, second session)
+
+The owner re-shared the flat trail-map reference (woods, river, bridge, mountain, dashed route, ring waypoints, flags) as the style to aim for, with fewer landmarks. Sketch 5 takes sketch 4's layout and cuts it to one of each:
+
+- **The walk** along the bottom: Home, High street (butcher's window), Smokehouse (lunch with Sam), Market (vegan stall), Home again.
+- **One wood** (prevention, "kept out of sight"), with the six prevention mechanisms round its edge.
+- **One river** (discomfort) and **one bridge**: the only way across.
+- **One hill** (justifications), with the eight reduction mechanisms in three groups: about the animal, about the meat, about responsibility.
+- **Two flags:** "same as before" at Home again, and "something changes" off on its own, reached by a faint trail from the bridge.
+- **Beyond the framework:** awareness as justification and meat attachment, set apart in a corner.
+
+One walker's route is drawn on top in a single colour (dashed red). It walks on at the butcher's window (avoidance), crosses the bridge at lunch and reaches "meat as normal" and "meat as nice" together (the route forks and rejoins), finds that nothing stirred at the vegan stall, and ends "same as before". Marks show the three states: filled (used), open (possible on this walk, not used) and dotted grey (not on this walk), using what encounters 1–3 in `garden.json` actually offer.
+
+Open questions for the owner: the route colour (red echoes the reference but the brief rules out alarm colours); whether the five triggers need their own marks or can stay as the stops' sublabels; and whether the hill should carry its marks on trails rather than standing free.
+
 ## Next steps
 
-1. Choose a base-map layout from the four sketches, or a combination.
-2. Draw one walker's journey on it in a single colour; keep sketching in tldraw (try a fresh chat) or in SVG.
+1. Give feedback on sketch 5 (landscape, landmarks, route style, the three states), then refine it.
+2. Carry the chosen map into the Map brief tab of the living doc, with a Process log row for this phase.
 3. Walk through prototype v0.3 and log notes on the conversational lines, "What do you say?" versus "What goes through your head?", and the look-closer ladder.
 4. Draft encounters 4–8 and their word sets, with a literature search per encounter. Pre-approve the PubMed tools so searches don't wait for permission.
 5. Plug the chosen map into the prototype's ending, using the starter kit's IDs (see [`docs/map-brief.md`](docs/map-brief.md)).
@@ -41,9 +57,9 @@ All four lay out the full model as a pared-back line map, in black and white, re
 
 A new chat does not remember earlier conversations. Paste this to bring it up to speed:
 
-> We're working on MRCD Interactive. Read `mrcd-interactive/README.md` first, then the docs in `mrcd-interactive/docs/` (the living version is the Claude Doc linked in the README). We're at the "Next steps" list in the README, starting with step 1: choosing a base-map layout from `mrcd-interactive/map/base-map-sketches.png`. Keep the working agreements in the README.
+> We're working on MRCD Interactive. Read `mrcd-interactive/README.md` first, then the docs in `mrcd-interactive/docs/` (the living version is the Claude Doc linked in the README). We're at the "Next steps" list in the README, starting with step 1: feedback on map sketch 5 (`mrcd-interactive/map/sketch-05-trail-landscape.png`). Keep the working agreements in the README.
 
-Make sure the new chat runs on this repository and branch (`claude/initial-app-development-011CUparkDNUBpxhhApHXBdQ`), and attach the source PDFs listed below if it needs them.
+Make sure the new chat runs on this repository and branch (`claude/dreamy-cerf-eah20u`, which includes everything from `claude/initial-app-development-011CUparkDNUBpxhhApHXBdQ`), and attach the source PDFs listed below if it needs them.
 
 ## Working agreements
 
@@ -56,7 +72,7 @@ Make sure the new chat runs on this repository and branch (`claude/initial-app-d
 
 ## Tool notes
 
-- **tldraw** (connector): in the first session its tools ran but returned nothing to Claude (no confirmation, errors or view of the canvas), so sketches were made in SVG instead. Worth retrying in a fresh chat.
+- **tldraw** (connector): code runs on the shared canvas, but nothing comes back to Claude: no return value, no error and no view (the same in two sessions). The workaround, from the second session: Claude runs the same script in a local copy of tldraw and checks the PNG before sending it to the canvas (see [`map/tldraw-check/`](map/tldraw-check/)). Scripts stick to frame, geo, line and text shapes, because the connector's tldraw version is unknown.
 - **PubMed** (connector): used for the literature searches; each search waited a long time for permission until approved.
 - **Claude Docs** (connector): the living brief is a Claude Doc; the Markdown in `docs/` is a snapshot.
 
@@ -73,6 +89,9 @@ Make sure the new chat runs on this repository and branch (`claude/initial-app-d
 | [`map/mrcd-map-starter.svg`](map/mrcd-map-starter.svg) | Inkscape starter kit: every mechanism, trigger and stop as a named object |
 | [`map/base-map-sketches.svg`](map/base-map-sketches.svg) / `.png` | Round 1 base-map sketches |
 | [`map/sketch-generator.py`](map/sketch-generator.py) | Script that draws the sketch sheet: `python3 sketch-generator.py out.svg` |
+| [`map/sketch-05-trail-landscape.png`](map/sketch-05-trail-landscape.png) | Sketch 5: one landscape with one walker's route |
+| [`map/sketch-05-tldraw.js`](map/sketch-05-tldraw.js) | The tldraw script that draws sketch 5; paste it into the connector's exec to redraw it on any canvas |
+| [`map/tldraw-check/`](map/tldraw-check/) | Renders a tldraw script locally to a PNG, because the connector returns nothing |
 
 ### Running the prototype locally
 
