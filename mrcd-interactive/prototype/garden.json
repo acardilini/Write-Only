@@ -1,0 +1,174 @@
+{
+  "version": "0.3-encounters-1-3",
+  "mechanisms": {
+    "avoidance": {"name": "Avoidance", "stage": "prevention", "plain": "Not looking, or moving on, so the question never really comes up."},
+    "wilful_ignorance": {"name": "Wilful ignorance", "stage": "prevention", "plain": "Choosing not to find out, because knowing would make things harder."},
+    "dissociation": {"name": "Dissociation", "stage": "prevention", "plain": "Keeping the meat on the plate separate from the animal it came from."},
+    "perceived_change": {"name": "Perceived behavioural change", "stage": "prevention", "plain": "Feeling that you don't eat much meat, or already eat less, so the problem isn't really yours."},
+    "humane": {"name": "Humane meat", "stage": "prevention", "plain": "Trusting that this meat came from animals that were treated well."},
+    "derogation": {"name": "Do-gooder derogation", "stage": "prevention", "plain": "Pushing back on the person who raised the question, rather than on the question."},
+    "deny_mind": {"name": "Denying animal mind", "stage": "reduction-animal", "plain": "Seeing the animal as less able to think, feel or suffer."},
+    "dichotomisation": {"name": "Dichotomisation", "stage": "reduction-animal", "plain": "Sorting animals into ones we care for and ones we eat."},
+    "natural": {"name": "Meat as natural", "stage": "reduction-meat", "plain": "Eating meat is simply what humans have always done."},
+    "normal": {"name": "Meat as normal", "stage": "reduction-meat", "plain": "Everyone around you eats meat, so it must be fine."},
+    "nice": {"name": "Meat as nice", "stage": "reduction-meat", "plain": "It tastes too good to give up."},
+    "necessary": {"name": "Meat as necessary", "stage": "reduction-responsibility", "plain": "You need it to be healthy, so it isn't really a choice."},
+    "third_party": {"name": "Third-party blame", "stage": "reduction-responsibility", "plain": "The farms, shops or government are responsible, not you."},
+    "outrage": {"name": "Moral outrage", "stage": "reduction-responsibility", "plain": "Anger at other wrongdoers that makes your own part feel smaller."},
+    "behaviour_change": {"name": "Behavioural change", "stage": "outcome", "plain": "Considering eating differently: settling the discomfort by changing what you do."},
+    "aware_justify": {"name": "Awareness used as justification", "stage": "addition", "plain": "Knowing you're rationalising, and letting that knowledge settle it. Our addition, not part of Rothgerber's framework."},
+    "attachment": {"name": "Meat attachment", "stage": "outside", "plain": "Feeling entitled to meat as a personal choice. From a separate measure, outside Rothgerber's framework."},
+    "arousal": {"name": "Discomfort", "stage": "arousal", "plain": "The dissonance itself: unease that arrives before the mind settles it."},
+    "neutral": {"name": "No mechanism", "stage": "neutral", "plain": "A reaction that doesn't point to any particular mechanism."}
+  },
+  "triggers": [
+    {"id": "info", "name": "Information exposure"},
+    {"id": "origin", "name": "Reminder that meat comes from an animal"},
+    {"id": "admit", "name": "Admitting you eat meat"},
+    {"id": "harmed", "name": "Admitting the animal was harmed"},
+    {"id": "vegans", "name": "Presence of vegetarians or vegans"}
+  ],
+  "beats": {
+    "home": "It's Saturday, late morning, and the week is finally over.\n\nYou've arranged to meet Sam for lunch at the Smokehouse, the barbecue place on Mill Lane. You've got half an hour, and it's a good day for walking.\n\nThere are two ways into town: along the high street, or through the Saturday market.",
+    "leave": "You lock the door behind you. The street is quiet: someone washing a car, a cat asleep on a wall, the smell of cut grass.",
+    "toLunch": "You're a little early. Mill Lane is narrow, and you can smell the smoker before you see it.",
+    "afterLunch": "You talk about work, and a film Sam keeps telling you to watch. Then Sam heads off, and you take the other way home.",
+    "end": "Home again. You put the kettle on and sit down for a moment.\n\nThat's the end of the walk."
+  },
+  "encounters": {
+    "e1": {
+      "title": "Lunch with a friend",
+      "place": "The Smokehouse",
+      "trigger": "admit",
+      "spoken": true,
+      "scene": "The Smokehouse is warm and loud, with long tables and music you half know. Sam is already there and waves you over.\n\nThe menu is chalked on a board above the counter. It's short.",
+      "menu": [
+        {"id": "pulled_pork", "label": "Pulled pork roll"},
+        {"id": "bacon_egg", "label": "Bacon and egg roll"},
+        {"id": "ribs", "label": "Pork ribs with slaw"},
+        {"id": "mushroom", "label": "Smoked mushroom roll", "veg": true}
+      ],
+      "reply": "Your food arrives. Sam has a bacon roll, piled high. They look at both plates and laugh.\n\n“Look at us. We eat a lot of meat, don't we?”",
+      "replyVeg": "Your food arrives. Sam has a bacon roll, piled high. They look from your plate to theirs and laugh.\n\n“Look at me. I eat a lot of meat, don't I?”",
+      "prompt1": "How do you feel about what Sam said?",
+      "prompt2": "What do you say?",
+      "round1": [
+        {"w": "Fine", "light": true, "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Amused", "light": true, "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Nothing much", "light": true, "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Satisfied", "points": ["nice"], "level": "Established", "src": "Piazza et al. 2015; Graça, Calheiros & Oliveira 2015; Macdiarmid et al. 2016"},
+        {"w": "In good company", "points": ["normal"], "level": "Proposed", "src": "McKimmie et al. 2003, via Rothgerber 2020"},
+        {"w": "Self-conscious", "points": ["arousal"], "level": "Proposed", "src": "Rothgerber 2019b"},
+        {"w": "Defensive", "points": ["arousal"], "level": "Proposed", "src": "Rothgerber 2020"},
+        {"w": "Guilty", "points": ["arousal"], "level": "Established", "src": "Piazza et al. 2015; Rothgerber 2015a"}
+      ],
+      "round2": [
+        {"w": "Worth it, though", "after": ["Satisfied"], "points": ["nice"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "Can't beat a bacon roll", "after": ["Satisfied"], "points": ["nice"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "Ha, we really do", "after": ["In good company"], "points": ["normal"], "level": "Proposed", "src": "McKimmie et al. 2003, via Rothgerber 2020"},
+        {"w": "It's how we grew up", "after": ["In good company", "Defensive"], "points": ["normal"], "level": "Established (construct)", "src": "Piazza et al. 2015 (Study 1: “I was raised eating meat”)"},
+        {"w": "I don't eat that much, really", "after": ["Self-conscious"], "points": ["perceived_change"], "level": "Established", "src": "Rothgerber 2019b; Macdiarmid et al. 2016"},
+        {"w": "It's the weekend, it's a treat", "after": ["Self-conscious"], "points": ["perceived_change"], "level": "Our coding", "src": "Rothgerber 2019b"},
+        {"w": "Everything in moderation, right?", "after": ["Self-conscious"], "points": ["perceived_change", "normal"], "level": "Our coding", "src": ""},
+        {"w": "Everyone eats like this", "after": ["Defensive"], "points": ["normal"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "I need the protein", "after": ["Defensive"], "points": ["necessary"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "It's my choice what I eat", "after": ["Defensive"], "points": ["attachment"], "level": "Our coding", "src": "Graça, Calheiros & Oliveira 2015"},
+        {"w": "I've been trying to eat less, actually", "after": ["Guilty"], "points": ["perceived_change"], "level": "Established (construct)", "src": "Macdiarmid et al. 2016; Rothgerber 2014b"},
+        {"w": "We probably should cut back", "after": ["Guilty", "Self-conscious"], "points": ["behaviour_change"], "level": "Proposed", "src": "Rothgerber 2020, §5.3"},
+        {"w": "Shall we try a meat-free week?", "after": ["*"], "points": ["behaviour_change"], "level": "Proposed", "src": "Rosenfeld 2018, via Rothgerber 2020"}
+      ],
+      "light": [
+        {"w": "Ha, true", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Pass the sauce?", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Mm, this is good", "points": ["neutral"], "level": "Our coding", "src": ""}
+      ]
+    },
+    "e2": {
+      "title": "Butcher's window",
+      "place": "The high street",
+      "trigger": "origin",
+      "scene": "The high street is busier. You pass the bakery, a phone shop with a sale on, then the butcher's.\n\nThe window is bright and tidy. Trays of mince. Pork chops fanned out on white paper. A neat pyramid of sausages with a little flag: “Our famous pork & fennel”.\n\nAt the far end of the window, on a bed of parsley, sits a pig's head.",
+      "pre": [
+        {"id": "look", "label": "Look closer"},
+        {"id": "walk", "label": "Keep walking", "avoid": true, "text": "You keep walking. The smell of the bakery follows you for a few steps.", "src": "Rothgerber 2020; Hoogland et al. 2005"}
+      ],
+      "ladder": [
+        {"text": "Up close, its ears are pale and soft. It has long eyelashes, almost white. A price card leans against its cheek.", "more": "Look closer still", "enough": "That's enough"},
+        {"text": "Its eyes aren't quite closed. Between the lids there is a thin line of dark eye, turned towards the street.\n\nUnder the price, in neat handwriting: “Our own, from Hollins Farm. Six months old.”"}
+      ],
+      "prompt1": "How do you feel, looking at it?",
+      "prompt2": "What goes through your head?",
+      "round1": [
+        {"w": "Fine", "light": true, "points": ["neutral"], "level": "Our coding", "src": "Kunst & Haugestad 2018"},
+        {"w": "Curious", "light": true, "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Hungry", "points": ["nice"], "level": "Established", "src": "Piazza et al. 2015"},
+        {"w": "Disgusted", "points": ["arousal"], "level": "Established", "src": "Kunst & Hohle 2016; Kubberød et al. 2002; Ruby & Heine 2012"},
+        {"w": "Sad for it", "points": ["arousal"], "level": "Established", "src": "Kunst & Hohle 2016; Kunst & Haugestad 2018"},
+        {"w": "Put off my food", "points": ["arousal"], "level": "Established", "src": "Kunst & Hohle 2016"},
+        {"w": "Uneasy", "points": ["arousal"], "level": "Proposed", "src": "Rothgerber 2020"}
+      ],
+      "round2": [
+        {"w": "I'll stick to the mince", "after": ["Disgusted", "Put off my food"], "points": ["dissociation"], "level": "Established (construct)", "src": "Kunst & Hohle 2016; Benningstad & Kunst 2020"},
+        {"w": "I don't need to see that", "after": ["Disgusted", "Put off my food", "Uneasy"], "points": ["avoidance", "wilful_ignorance"], "level": "Established (construct)", "src": "Rothgerber 2020; Benningstad & Kunst 2020"},
+        {"w": "Poor thing", "after": ["Sad for it"], "points": ["arousal"], "level": "Established (construct)", "src": "Kunst & Hohle 2016"},
+        {"w": "Pigs are meant to be really clever", "after": ["Sad for it"], "points": ["arousal"], "level": "Established (construct)", "src": "Ruby & Heine 2012"},
+        {"w": "Hope she had a decent life", "after": ["Sad for it", "Uneasy"], "points": ["humane"], "level": "Our coding", "src": "Rothgerber 2015a; Te Velde et al. 2002"},
+        {"w": "Free-range is probably fine", "after": ["Uneasy"], "points": ["humane"], "level": "Established (construct)", "src": "Hoogland et al. 2005"},
+        {"w": "It's just pork", "after": ["Put off my food", "Hungry"], "points": ["dissociation"], "level": "Established (construct)", "src": "Kunst & Hohle 2016 (Study 5); Plous 1993"},
+        {"w": "Ooh, those sausages", "after": ["Hungry"], "points": ["nice"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "People have always eaten pork", "after": ["Hungry", "Uneasy"], "points": ["natural"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "Maybe something veggie today", "after": ["*"], "points": ["behaviour_change"], "level": "Established (intention)", "src": "Kunst & Hohle 2016; Hoogland et al. 2005"}
+      ],
+      "light": [
+        {"w": "Just a butcher's", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Must grab bread on the way back", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Didn't really register", "points": ["neutral"], "level": "Our coding", "src": ""}
+      ]
+    },
+    "e3": {
+      "title": "Vegan stall",
+      "place": "The Saturday market",
+      "trigger": "vegans",
+      "spoken": true,
+      "scene": "The market is in full swing: honey, potted herbs, a stall of secondhand books. A busker plays something slow near the fountain.\n\nBeside the fountain is a small table with a hand-painted sign: “Ask a Vegan Anything”. Leaflets, a bowl of free biscuits, a clipboard.\n\nA volunteer about your age catches your eye and smiles. “Hi! Have you ever thought about going vegan?”",
+      "pre": [
+        {"id": "stop", "label": "Stop at the stall", "text": "You stop. They wait for your answer, still smiling."},
+        {"id": "walk", "label": "Walk on", "avoid": true, "text": "You give a small smile and keep walking. The busker finishes the song.", "src": "Rothgerber 2020; Markowski & Roxburgh 2019"}
+      ],
+      "prompt1": "How do you feel about being asked?",
+      "prompt2": "What do you say?",
+      "round1": [
+        {"w": "Indifferent", "light": true, "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Annoyed", "points": ["derogation"], "level": "Established", "src": "Minson & Monin 2012"},
+        {"w": "Angry", "points": ["derogation"], "level": "Established", "src": "Monin, Sawyer & Marquez 2008"},
+        {"w": "Want to argue back", "points": ["derogation"], "level": "Our coding", "src": "Monin, Sawyer & Marquez 2008; Minson & Monin 2012"},
+        {"w": "Judged", "points": ["arousal"], "level": "Established", "src": "Minson & Monin 2012; Rothgerber 2014a"},
+        {"w": "Guilty", "points": ["arousal"], "level": "Established", "src": "Rothgerber 2014a"},
+        {"w": "Awkward", "points": ["arousal"], "level": "Established", "src": "Markowski & Roxburgh 2019"},
+        {"w": "Curious", "points": ["neutral"], "level": "Proposed", "src": "Bolderdijk et al. 2018"},
+        {"w": "Respect", "points": ["neutral"], "level": "Established", "src": "De Groeve et al. 2021"}
+      ],
+      "round2": [
+        {"w": "Bit full-on, isn't it?", "after": ["Annoyed", "Angry"], "points": ["derogation"], "level": "Established (construct)", "src": "Minson & Monin 2012; De Groeve et al. 2021"},
+        {"w": "It's just normal to eat meat", "after": ["Annoyed", "Judged"], "points": ["normal"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "Don't tell me what to eat", "after": ["Angry"], "points": ["derogation", "attachment"], "level": "Our coding", "src": "Monin, Sawyer & Marquez 2008; Graça, Calheiros & Oliveira 2015"},
+        {"w": "How long have you been vegan?", "after": ["Want to argue back", "Curious"], "points": ["derogation"], "level": "Our coding (could also be curiosity)", "src": "Rothgerber 2014a"},
+        {"w": "Plants feel pain too, you know", "after": ["Want to argue back"], "points": ["derogation"], "level": "Our coding", "src": ""},
+        {"w": "Do you wear leather, though?", "after": ["Want to argue back"], "points": ["derogation"], "level": "Our coding", "src": "Rothgerber 2014a"},
+        {"w": "I don't eat much meat anyway", "after": ["Judged", "Guilty"], "points": ["perceived_change"], "level": "Established (construct)", "src": "Rothgerber 2014a, 2019b"},
+        {"w": "My family would never go for it", "after": ["Judged", "Awkward"], "points": ["normal"], "level": "Established", "src": "Markowski & Roxburgh 2019"},
+        {"w": "Do pigs really feel it like we do?", "after": ["Guilty"], "points": ["deny_mind"], "level": "Established (construct)", "src": "Rothgerber 2014a"},
+        {"w": "Ha, maybe one day", "after": ["Awkward"], "points": ["avoidance"], "level": "Our coding", "src": "Rothgerber 2020"},
+        {"w": "I'd miss bacon too much", "after": ["Awkward", "Respect"], "points": ["nice"], "level": "Established (construct)", "src": "Piazza et al. 2015"},
+        {"w": "Where do you get your protein?", "after": ["Curious"], "points": ["necessary"], "level": "Our coding (could also be curiosity)", "src": "Piazza et al. 2015"},
+        {"w": "Good on you", "after": ["Respect"], "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Got any easy recipes?", "after": ["*"], "points": ["behaviour_change"], "level": "Proposed", "src": "Bolderdijk et al. 2018; Rothgerber 2020, §5.3"}
+      ],
+      "light": [
+        {"w": "No thanks", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Not really, no", "points": ["neutral"], "level": "Our coding", "src": ""},
+        {"w": "Maybe, ha", "points": ["neutral"], "level": "Our coding", "src": ""}
+      ]
+    }
+  }
+}

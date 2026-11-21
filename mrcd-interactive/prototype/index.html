@@ -1,0 +1,486 @@
+<meta charset="utf-8">
+<title>The Saturday Walk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one quiet reading column under a thin route line that shows where you are on the walk */
+:root {
+  --bg: #eef1ee;
+  --surface: #f6f8f6;
+  --ink: #1f2624;
+  --muted: #5d6965;
+  --faint: #98a4a0;
+  --line: #c8d0cc;
+  --accent: #2f6b60;
+  --accent-ink: #1d4a42;
+  --accent-soft: #d6e6e0;
+  --on-accent: #f6f8f6;
+  --font-read: "Literata", Georgia, "Times New Roman", serif;
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.4rem;
+  --step-3: 1.9rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a19; --surface: #1a2220; --ink: #e2e8e5; --muted: #9eaba6; --faint: #5f6d68;
+    --line: #2d3936; --accent: #8cc3b6; --accent-ink: #b5dbd1; --accent-soft: #233f39; --on-accent: #10201c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a19; --surface: #1a2220; --ink: #e2e8e5; --muted: #9eaba6; --faint: #5f6d68;
+  --line: #2d3936; --accent: #8cc3b6; --accent-ink: #b5dbd1; --accent-soft: #233f39; --on-accent: #10201c;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--step-0);
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+main:focus { outline: none; }
+
+/* Route line */
+.route { display: grid; grid-template-columns: repeat(5, 1fr); position: relative; padding-top: 0.5rem; }
+.route::before {
+  content: ""; position: absolute; left: 10%; right: 10%; top: calc(0.5rem + 5px);
+  border-top: 1px dashed var(--line);
+}
+.stop { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; position: relative; min-width: 0; }
+.stop .dot { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--faint); background: var(--bg); }
+.stop.done .dot { background: var(--faint); border-color: var(--faint); }
+.stop.here .dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.stop .lbl { font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); text-align: center; line-height: 1.25; }
+.stop.here .lbl { color: var(--accent-ink); font-weight: 600; }
+
+/* Reading */
+.eyebrow { font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+h1, h2, h3 { font-family: var(--font-read); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); line-height: 1.15; }
+h2 { font-size: var(--step-2); line-height: 1.25; }
+h3 { font-size: var(--step-1); line-height: 1.3; }
+.prose { display: flex; flex-direction: column; gap: 0.9rem; font-family: var(--font-read); font-size: var(--step-1); line-height: 1.7; max-width: 65ch; }
+.prose p { margin: 0; }
+.prose.past { color: var(--muted); font-size: var(--step-0); line-height: 1.6; }
+.prose.small { font-family: var(--font-ui); font-size: var(--step-0); line-height: 1.6; }
+.block { display: flex; flex-direction: column; gap: 1rem; }
+.prompt { font-family: var(--font-read); font-weight: 600; color: var(--ink); font-size: var(--step-2); line-height: 1.3; margin: 0.5rem 0 0; text-wrap: balance; }
+.hint { font-size: var(--step--1); color: var(--muted); margin: -0.5rem 0 0; }
+.note { font-size: var(--step--1); color: var(--muted); margin: 0; }
+
+/* Buttons */
+.choices { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.choice {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  padding: 0.7rem 1rem; font-family: var(--font-read); font-size: var(--step-1); text-align: left;
+}
+.choice:hover { border-color: var(--accent); }
+.go {
+  align-self: flex-start; background: var(--accent); color: var(--on-accent); border: 0; border-radius: 4px;
+  padding: 0.7rem 1.25rem; font-weight: 600; font-size: var(--step-0);
+}
+.go:disabled { background: var(--line); color: var(--muted); cursor: default; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Word cloud */
+.cloud {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 0.9rem 1.4rem; padding: 1.75rem 0.5rem; border-block: 1px solid var(--line);
+}
+.word {
+  background: transparent; border: 1px solid transparent; border-radius: 999px;
+  padding: 0.3rem 0.8rem; font-family: var(--font-read); font-size: var(--s, 1.1rem); color: var(--ink);
+  animation: drift var(--dur, 8s) ease-in-out infinite; animation-delay: var(--d, 0s);
+}
+.cloud.phrases .word { font-style: italic; }
+.word:hover { border-color: var(--line); }
+.word[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink); }
+.word.none { font-family: var(--font-ui); font-size: var(--step--1); color: var(--muted); animation: none; }
+@keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(var(--dy, 3px)); } }
+@media (prefers-reduced-motion: reduce) { .word { animation: none; } }
+.other {
+  width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line);
+  padding: 0.5rem 0.1rem; font-family: var(--font-read); font-size: var(--step-0); color: var(--ink);
+}
+.other::placeholder { color: var(--faint); font-style: italic; }
+
+/* Reveal */
+.stopcard { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; }
+.facts dt { font-size: var(--step--1); color: var(--muted); padding-top: 0.15rem; }
+.facts dd { margin: 0; font-family: var(--font-read); min-width: 0; }
+.points { display: flex; flex-direction: column; gap: 0.6rem; }
+.point { display: grid; grid-template-columns: max-content 1fr; gap: 0.75rem; align-items: baseline; }
+.point p { margin: 0; color: var(--muted); min-width: 0; }
+details { font-size: var(--step--1); color: var(--muted); }
+details ul { margin: 0.5rem 0 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.25rem; }
+summary { cursor: pointer; }
+fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+legend { font-weight: 500; padding: 0; margin-bottom: 0.25rem; }
+.radios { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.radios label { display: inline-flex; gap: 0.4rem; align-items: center; }
+textarea {
+  width: 100%; min-height: 4.5rem; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; padding: 0.6rem; font: inherit; resize: vertical;
+}
+#log { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.75rem; min-height: 10rem; }
+
+/* Map */
+.map { display: flex; flex-direction: column; gap: 0.5rem; }
+.layer { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.9rem 1rem; background: var(--surface); border-radius: 4px; }
+.layer h3 { font-family: var(--font-ui); font-size: var(--step--1); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.sub { font-size: var(--step--1); color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.mech {
+  display: inline-flex; align-items: baseline; gap: 0.35rem; padding: 0.25rem 0.6rem; border-radius: 999px;
+  font-size: var(--step--1); border: 1px solid var(--line); color: var(--ink); white-space: nowrap;
+}
+.mech.used { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+.mech.absent { border-style: dashed; color: var(--faint); }
+.mech sup { font-size: 0.65rem; font-weight: 500; }
+.arrow { text-align: center; color: var(--faint); font-size: var(--step--1); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; }
+.copyrow { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+</style>
+
+<div class="wrap">
+  <nav class="route" id="route" aria-label="Where you are on the walk"></nav>
+  <main id="stage" tabindex="-1" aria-live="polite"></main>
+</div>
+
+<script>
+const stage = document.getElementById('stage');
+const routeEl = document.getElementById('route');
+const S = {
+  g: null, route: null, seq: [], i: -1, pos: 0, done: 0,
+  log: { version: null, startedAt: new Date().toISOString(), finishedAt: null, route: null, order: [], encounters: {}, reflections: {}, feedback: {} }
+};
+
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v === false || v == null) continue;
+    if (k === 'class') e.className = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const k of kids.flat(Infinity)) {
+    if (k == null || k === false) continue;
+    e.append(k.nodeType ? k : document.createTextNode(k));
+  }
+  return e;
+}
+const paras = (text, cls) => h('div', { class: 'prose ' + (cls || '') }, text.split('\n\n').map(t => h('p', {}, t)));
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const rand = (lo, hi) => lo + Math.random() * (hi - lo);
+
+function show(...nodes) {
+  stage.replaceChildren(h('div', { class: 'block' }, ...nodes));
+  renderRoute();
+  window.scrollTo(0, 0);
+  stage.focus({ preventScroll: true });
+}
+
+function renderRoute() {
+  const out = S.route === 'high' ? 'High street' : S.route === 'market' ? 'Market' : 'Town';
+  const back = S.route === 'high' ? 'Market' : S.route === 'market' ? 'High street' : 'Town';
+  const names = ['Home', out, 'Smokehouse', back, 'Home'];
+  routeEl.replaceChildren(...names.map((n, i) => h('div', {
+    class: 'stop' + (i < S.pos ? ' done' : '') + (i === S.pos ? ' here' : ''),
+    'aria-current': i === S.pos ? 'step' : false
+  }, h('span', { class: 'dot' }), h('span', { class: 'lbl' }, n))));
+}
+
+function intro() {
+  S.pos = 0;
+  show(
+    h('p', { class: 'eyebrow' }, 'Prototype v0.3 · 3 of 8 encounters · text only'),
+    h('h1', {}, 'The Saturday Walk'),
+    paras('This is a short walk through an ordinary Saturday. A few things happen along the way.\n\nEach time something happens, notice your first reaction and pick the words that fit. Pick as many as you like, or none. There are no right or wrong answers, and nothing is judged.\n\nAt the end you’ll see your walk laid out, and what your reactions might say about how minds handle uncomfortable moments. It takes about five minutes.'),
+    h('button', { class: 'go', type: 'button', onclick: home }, 'Start walking')
+  );
+}
+
+function home() {
+  const G = S.g;
+  const pick = r => {
+    S.route = r; S.log.route = r;
+    const first = r === 'high' ? 'e2' : 'e3', last = r === 'high' ? 'e3' : 'e2';
+    S.seq = [
+      { t: 'beat', k: 'leave', pos: 0 }, { t: 'enc', id: first, pos: 1 },
+      { t: 'beat', k: 'toLunch', pos: 2 }, { t: 'enc', id: 'e1', pos: 2 },
+      { t: 'beat', k: 'afterLunch', pos: 3 }, { t: 'enc', id: last, pos: 3 },
+      { t: 'end', pos: 4 }
+    ];
+    S.i = -1; next();
+  };
+  show(
+    h('p', { class: 'eyebrow' }, 'Home'),
+    paras(G.beats.home),
+    h('div', { class: 'choices' },
+      h('button', { class: 'choice', type: 'button', onclick: () => pick('high') }, 'Take the high street'),
+      h('button', { class: 'choice', type: 'button', onclick: () => pick('market') }, 'Go through the market'))
+  );
+}
+
+function next() {
+  S.i += 1;
+  const it = S.seq[S.i];
+  S.pos = it.pos;
+  if (it.t === 'beat') {
+    let text = S.g.beats[it.k];
+    if (it.k === 'leave') text += S.route === 'high' ? ' You head for the high street.' : ' You head for the market.';
+    show(paras(text), h('button', { class: 'go', type: 'button', onclick: next }, 'Keep walking'));
+  } else if (it.t === 'enc') {
+    encounter(it.id);
+  } else {
+    show(paras(S.g.beats.end), h('button', { class: 'go', type: 'button', onclick: reveal }, 'See your walk'));
+  }
+}
+
+function encounter(id) {
+  const e = S.g.encounters[id];
+  S.log.order.push(id);
+  const rec = S.log.encounters[id] = { n: S.log.order.length, pre: null, ladder: null, menu: null, avoided: false, preventionHeld: false, round1: null, round2: null };
+  const eyebrow = () => h('p', { class: 'eyebrow' }, e.place);
+  const hint = () => h('p', { class: 'hint' }, 'Pick any that fit, or none.');
+
+  const words = lead => {
+    show(eyebrow(), paras(e.scene, 'past'), lead(),
+      h('p', { class: 'prompt' }, e.prompt1), hint(),
+      cloud(e.round1, id + '-r1', false, r1 => {
+        rec.round1 = r1;
+        const felt = r1.words.filter(w => !w.light).map(w => w.w);
+        let items;
+        if (!felt.length) {
+          rec.preventionHeld = true;
+          items = e.light;
+        } else {
+          items = e.round2.filter(x => x.after.includes('*') || x.after.some(a => felt.includes(a)));
+        }
+        show(eyebrow(), lead(),
+          h('p', { class: 'prompt' }, e.prompt2), hint(),
+          cloud(items, id + '-r2', true, r2 => { rec.round2 = r2; next(); }, e.spoken));
+      }));
+  };
+
+  const ladder = k => {
+    rec.ladder = k + 1;
+    const text = e.ladder.slice(0, k + 1).map(s => s.text).join('\n\n');
+    const step = e.ladder[k];
+    if (step.more && k + 1 < e.ladder.length) {
+      show(eyebrow(), paras(e.scene, 'past'), paras(text), h('div', { class: 'choices' },
+        h('button', { class: 'choice', type: 'button', onclick: () => ladder(k + 1) }, step.more),
+        h('button', { class: 'choice', type: 'button', onclick: () => words(() => paras(text)) }, step.enough)));
+    } else {
+      words(() => paras(text));
+    }
+  };
+
+  let choices;
+  if (e.pre) {
+    choices = e.pre.map(o => h('button', { class: 'choice', type: 'button', onclick: () => {
+      rec.pre = o.id;
+      if (o.avoid) {
+        rec.avoided = true;
+        show(eyebrow(), paras(e.scene, 'past'), paras(o.text), h('button', { class: 'go', type: 'button', onclick: next }, 'Keep walking'));
+      } else if (e.ladder) {
+        ladder(0);
+      } else {
+        words(() => paras(o.text));
+      }
+    } }, o.label));
+  } else if (e.menu) {
+    choices = e.menu.map(o => h('button', { class: 'choice', type: 'button', onclick: () => {
+      rec.menu = o.id;
+      words(() => h('div', { class: 'block' }, paras('You order the ' + o.label.toLowerCase() + '.'), paras(o.veg ? e.replyVeg : e.reply)));
+    } }, o.label));
+  }
+  show(eyebrow(), paras(e.scene), h('div', { class: 'choices' }, choices));
+}
+
+function cloud(items, key, phrases, done, quote) {
+  const shown = shuffle(items.slice());
+  const sel = new Set();
+  let none = false, first = null;
+  const t0 = performance.now();
+  const go = h('button', { class: 'go', type: 'button', disabled: true }, 'Continue');
+  const other = h('input', { class: 'other', type: 'text', id: 'other-' + key, placeholder: 'Something else…', 'aria-label': 'Something else, in your own words' });
+  const refresh = () => { go.disabled = !(sel.size || none || other.value.trim()); };
+  const mark = () => { if (first === null) first = Math.round(performance.now() - t0); };
+  const btns = shown.map(it => {
+    const b = h('button', {
+      class: 'word', type: 'button', 'aria-pressed': 'false',
+      style: `--s:${(phrases ? rand(1.0, 1.15) : rand(1.05, 1.45)).toFixed(2)}rem;--d:${(-rand(0, 8)).toFixed(2)}s;--dy:${rand(-4, 4).toFixed(1)}px;--dur:${rand(6, 10).toFixed(1)}s`
+    }, quote ? '“' + it.w + '”' : it.w);
+    b.addEventListener('click', () => {
+      mark();
+      if (sel.has(it)) sel.delete(it); else sel.add(it);
+      b.setAttribute('aria-pressed', sel.has(it));
+      none = false; noneBtn.setAttribute('aria-pressed', 'false');
+      refresh();
+    });
+    return b;
+  });
+  const noneBtn = h('button', { class: 'word none', type: 'button', 'aria-pressed': 'false' }, 'None of these');
+  noneBtn.addEventListener('click', () => {
+    mark();
+    none = !none; noneBtn.setAttribute('aria-pressed', none);
+    if (none) { sel.clear(); btns.forEach(b => b.setAttribute('aria-pressed', 'false')); }
+    refresh();
+  });
+  other.addEventListener('input', refresh);
+  go.addEventListener('click', () => done({
+    words: shown.filter(it => sel.has(it)).map(it => ({ w: it.w, light: !!it.light, points: it.points })),
+    none, other: other.value.trim(), shown: shown.map(it => it.w),
+    firstClickMs: first, totalMs: Math.round(performance.now() - t0)
+  }));
+  return h('div', { class: 'block' },
+    h('div', { class: 'cloud' + (phrases ? ' phrases' : ''), role: 'group', 'aria-label': 'Words to choose from' }, btns, noneBtn),
+    other, go);
+}
+
+function mechsFor(rec) {
+  if (rec.avoided) return ['avoidance'];
+  const out = [];
+  for (const r of [rec.round1, rec.round2]) for (const w of (r ? r.words : [])) for (const p of w.points) if (!out.includes(p)) out.push(p);
+  return out;
+}
+const MECH = id => S.g.mechanisms[id];
+function updateLog() { const ta = document.getElementById('log'); if (ta) ta.value = JSON.stringify(S.log, null, 2); }
+
+function reveal() {
+  const G = S.g;
+  S.log.finishedAt = new Date().toISOString();
+  S.pos = 4;
+  const stops = S.log.order.map((id, i) => {
+    const e = G.encounters[id], rec = S.log.encounters[id];
+    const facts = [];
+    if (rec.pre) facts.push(['You', '“' + e.pre.find(o => o.id === rec.pre).label + '”']);
+    if (rec.ladder) facts.push(['How close', rec.ladder === e.ladder.length ? 'All the way' : 'Once, then stopped']);
+    if (rec.menu) facts.push(['You ordered', e.menu.find(o => o.id === rec.menu).label]);
+    const said = r => !r ? null : [r.words.map(w => w.w).join(', '), r.none ? 'None of these' : '', r.other ? '“' + r.other + '”' : ''].filter(Boolean).join('; ') || '—';
+    if (!rec.avoided) { facts.push(['First reaction', said(rec.round1)]); facts.push([e.spoken ? 'You said' : 'Then', said(rec.round2)]); }
+    const ms = mechsFor(rec).filter(m => m !== 'neutral');
+    const picked = rec.avoided ? [{ w: e.pre.find(o => o.avoid).label, level: 'Established', src: e.pre.find(o => o.avoid).src }]
+      : [...(rec.round1 ? rec.round1.words : []), ...(rec.round2 ? rec.round2.words : [])].map(w => {
+          const src = [...e.round1, ...e.round2, ...(e.light || [])].find(x => x.w === w.w); return { w: w.w, level: src.level, src: src.src };
+        });
+    const fitName = 'fit-' + id;
+    const fit = h('fieldset', {},
+      h('legend', {}, 'Does this fit what was going on for you?'),
+      h('div', { class: 'radios' }, ['Fits', 'Partly', 'Doesn’t fit'].map((lab, k) =>
+        h('label', {}, h('input', { type: 'radio', name: fitName, id: fitName + '-' + k, value: lab, onchange: ev => {
+          S.log.reflections[id] = Object.assign(S.log.reflections[id] || {}, { fit: ev.target.value }); updateLog();
+        } }), lab))),
+      h('textarea', { id: 'note-' + id, placeholder: 'Anything to add? (optional)', 'aria-label': 'Anything to add about ' + e.title, oninput: ev => {
+        S.log.reflections[id] = Object.assign(S.log.reflections[id] || {}, { note: ev.target.value }); updateLog();
+      } }));
+    return h('section', { class: 'stopcard' },
+      h('p', { class: 'eyebrow' }, e.place),
+      h('h3', {}, (i + 1) + '. ' + e.title),
+      h('dl', { class: 'facts' }, facts.map(([k, v]) => [h('dt', {}, k), h('dd', {}, v)])),
+      ms.length
+        ? h('div', { class: 'points' }, ms.map(m => h('div', { class: 'point' }, h('span', { class: 'mech used' }, MECH(m).name), h('p', {}, MECH(m).plain))))
+        : h('p', { class: 'note' }, rec.preventionHeld
+            ? 'Nothing much stirred here. In Rothgerber’s model that is prevention holding: the moment passes without discomfort, so there is nothing to explain away.'
+            : 'Your words here didn’t point to any particular mechanism.'),
+      picked.length ? h('details', {}, h('summary', {}, 'Where these links come from'),
+        h('ul', {}, picked.map(p => h('li', {}, '“' + p.w + '” · ' + p.level + (p.src ? ' · ' + p.src : ''))))) : null,
+      fit);
+  });
+
+  const used = {};
+  S.log.order.forEach((id, i) => mechsFor(S.log.encounters[id]).forEach(m => { (used[m] = used[m] || []).push(i + 1); }));
+  const offered = new Set(['avoidance']);
+  Object.values(G.encounters).forEach(e => [...e.round1, ...e.round2].forEach(w => w.points.forEach(p => offered.add(p))));
+  const chip = m => {
+    const state = used[m] ? 'used' : offered.has(m) ? '' : 'absent';
+    return h('span', { class: 'mech ' + state, title: state === 'absent' ? 'Not on this short walk' : MECH(m).plain },
+      MECH(m).name, used[m] ? h('sup', {}, used[m].join(',')) : null);
+  };
+  const byStage = s => Object.keys(G.mechanisms).filter(m => G.mechanisms[m].stage === s).map(chip);
+  const metTriggers = new Set(S.log.order.map(id => G.encounters[id].trigger));
+  const held = S.log.order.map((id, i) => S.log.encounters[id].preventionHeld ? i + 1 : null).filter(Boolean);
+  const layer = (title, ...kids) => h('div', { class: 'layer' }, h('h3', {}, title), ...kids);
+  const map = h('div', { class: 'map' },
+    layer('What can set it off', h('div', { class: 'chips' }, G.triggers.map(t => h('span', { class: 'mech ' + (metTriggers.has(t.id) ? 'used' : 'absent') }, t.name)))),
+    h('p', { class: 'arrow' }, '↓ the mind tries to stop it reaching you'),
+    layer('Prevention',
+      held.length ? h('p', { class: 'sub' }, 'Held at stop ' + held.join(' and ') + ': nothing stirred.') : null,
+      h('div', { class: 'chips' }, byStage('prevention'))),
+    h('p', { class: 'arrow' }, '↓ if it gets through'),
+    layer('Discomfort', h('div', { class: 'chips' }, chip('arousal'))),
+    h('p', { class: 'arrow' }, '↓ the mind settles it, by changing how things look…'),
+    layer('Reduction',
+      h('p', { class: 'sub' }, 'About the animal'), h('div', { class: 'chips' }, byStage('reduction-animal')),
+      h('p', { class: 'sub' }, 'About the meat'), h('div', { class: 'chips' }, byStage('reduction-meat')),
+      h('p', { class: 'sub' }, 'About responsibility'), h('div', { class: 'chips' }, byStage('reduction-responsibility'))),
+    h('p', { class: 'arrow' }, '↓ …or by changing what you do'),
+    layer('Outcome', h('div', { class: 'chips' }, byStage('outcome'))),
+    layer('Beyond the framework', h('div', { class: 'chips' }, byStage('addition'), byStage('outside'))));
+
+  const radio = (name, q, opts) => h('fieldset', {}, h('legend', {}, q),
+    h('div', { class: 'radios' }, opts.map((lab, k) => h('label', {}, h('input', { type: 'radio', name, id: name + '-' + k, value: lab, onchange: ev => { S.log.feedback[name] = ev.target.value; updateLog(); } }), lab))));
+  const text = (id, q) => h('div', { class: 'block' }, h('label', { for: id }, q),
+    h('textarea', { id, oninput: ev => { S.log.feedback[id] = ev.target.value; updateLog(); } }));
+
+  const status = h('span', { class: 'note', role: 'status' });
+  const copy = h('button', { class: 'go', type: 'button', onclick: () => {
+    const ta = document.getElementById('log');
+    navigator.clipboard.writeText(ta.value)
+      .then(() => { status.textContent = 'Copied.'; })
+      .catch(() => { ta.select(); status.textContent = 'Selected. Press Ctrl+C or ⌘C to copy.'; });
+  } }, 'Copy your walk log');
+
+  show(
+    h('p', { class: 'eyebrow' }, 'After the walk'),
+    h('h1', {}, 'Your walk'),
+    paras('Here is the route you took, the words you picked, and what those reactions might point to. The names come from research on how people handle the discomfort of eating animals they also care about (Rothgerber, 2020).\n\nThey describe common moves that every mind makes. They aren’t verdicts about you.', 'small'),
+    ...stops,
+    h('section', { class: 'block stopcard' },
+      h('h2', {}, 'The full map'),
+      paras('This is the whole model, with your walk marked on it. Filled names are ones your reactions pointed to; the small numbers say which stop. Outlined names were possible on this walk but you didn’t use them. Dashed names weren’t part of this short walk.', 'small'),
+      map),
+    h('section', { class: 'block stopcard' },
+      h('h2', {}, 'A few questions'),
+      radio('fb-noticed', 'During the walk, did you notice your own reactions as they happened?', ['No', 'A little', 'Yes, clearly']),
+      text('fb-named', 'How did it feel to see your reactions named?'),
+      radio('fb-changed', 'Has seeing the map changed how you think about any of those moments?', ['Not at all', 'A little', 'Quite a bit', 'A lot']),
+      text('fb-off', 'Anything that felt off, confusing or unfair?')),
+    h('section', { class: 'block stopcard' },
+      h('h2', {}, 'What this was about'),
+      paras('Cognitive dissonance is the discomfort we feel when what we do doesn’t match what we value. Most people care about animals, and most people eat them.\n\nMinds are good at smoothing that over, often so quickly we don’t notice: we look away, keep the meat separate from the animal, push back on the person who raised it, or tell ourselves it’s normal.\n\nThese reactions are just that: reactions. They aren’t careful choices, and they may not reflect who we are or what we value. Noticing them is the first step to deciding for ourselves.', 'small')),
+    h('section', { class: 'block stopcard' },
+      h('h2', {}, 'Your walk log'),
+      h('p', { class: 'note' }, 'Nothing is stored or sent anywhere. To share your walk with the researcher, copy this log and paste it into a message.'),
+      h('textarea', { id: 'log', readonly: true, 'aria-label': 'Your walk log' }),
+      h('div', { class: 'copyrow' }, copy, status))
+  );
+  updateLog();
+}
+
+fetch('garden.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(g => { S.g = g; S.log.version = g.version; intro(); })
+  .catch(() => { stage.replaceChildren(paras('The walk couldn’t load its encounters. Reload the page to try again.')); });
+renderRoute();
+</script>

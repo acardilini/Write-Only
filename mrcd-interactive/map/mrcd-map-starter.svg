@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     width="1600" height="1000" viewBox="0 0 1600 1000" id="mrcd-map">
+  <sodipodi:namedview id="namedview" pagecolor="#ffffff" bordercolor="#999999" inkscape:document-units="px"/>
+  <title>MRCD map starter kit</title>
+
+  <g inkscape:groupmode="layer" inkscape:label="Ground" id="layer-ground"/>
+
+  <g inkscape:groupmode="layer" inkscape:label="Connections (draw links here: link-a--b)" id="layer-connections"/>
+
+  <g inkscape:groupmode="layer" inkscape:label="Route (drawn by the prototype)" id="layer-route"/>
+
+  <g inkscape:groupmode="layer" inkscape:label="Triggers" id="layer-triggers" style="font-family:sans-serif;font-size:16px;fill:#222222">
+    <g id="trigger-info" inkscape:label="trigger-info"><circle id="trigger-info-mark" cx="120" cy="260" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="trigger-info-label" x="138" y="265">Information exposure</text></g>
+    <g id="trigger-origin" inkscape:label="trigger-origin"><circle id="trigger-origin-mark" cx="120" cy="340" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="trigger-origin-label" x="138" y="345">Reminder meat is an animal</text></g>
+    <g id="trigger-admit" inkscape:label="trigger-admit"><circle id="trigger-admit-mark" cx="120" cy="420" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="trigger-admit-label" x="138" y="425">Admitting you eat meat</text></g>
+    <g id="trigger-harmed" inkscape:label="trigger-harmed"><circle id="trigger-harmed-mark" cx="120" cy="500" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="trigger-harmed-label" x="138" y="505">The animal was harmed</text></g>
+    <g id="trigger-vegans" inkscape:label="trigger-vegans"><circle id="trigger-vegans-mark" cx="120" cy="580" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="trigger-vegans-label" x="138" y="585">Vegetarians or vegans nearby</text></g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="Mechanisms" id="layer-mechanisms" style="font-family:sans-serif;font-size:16px;fill:#222222">
+    <g id="mech-avoidance" inkscape:label="mech-avoidance"><circle id="mech-avoidance-mark" cx="440" cy="250" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-avoidance-label" x="458" y="255">Avoidance</text></g>
+    <g id="mech-wilful-ignorance" inkscape:label="mech-wilful-ignorance"><circle id="mech-wilful-ignorance-mark" cx="450" cy="340" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-wilful-ignorance-label" x="468" y="345">Wilful ignorance</text></g>
+    <g id="mech-dissociation" inkscape:label="mech-dissociation"><circle id="mech-dissociation-mark" cx="460" cy="430" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-dissociation-label" x="478" y="435">Dissociation</text></g>
+    <g id="mech-perceived-change" inkscape:label="mech-perceived-change"><circle id="mech-perceived-change-mark" cx="440" cy="520" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-perceived-change-label" x="458" y="525">Perceived behavioural change</text></g>
+    <g id="mech-humane" inkscape:label="mech-humane"><circle id="mech-humane-mark" cx="460" cy="610" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-humane-label" x="478" y="615">Humane meat</text></g>
+    <g id="mech-derogation" inkscape:label="mech-derogation"><circle id="mech-derogation-mark" cx="450" cy="700" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-derogation-label" x="468" y="705">Do-gooder derogation</text></g>
+
+    <g id="mech-arousal" inkscape:label="mech-arousal"><circle id="mech-arousal-mark" cx="780" cy="480" r="14" style="fill:#ffffff;stroke:#222222;stroke-width:2"/><text id="mech-arousal-label" x="804" y="486">Discomfort</text></g>
+
+    <g id="mech-deny-mind" inkscape:label="mech-deny-mind"><circle id="mech-deny-mind-mark" cx="1020" cy="250" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-deny-mind-label" x="1038" y="255">Denying animal mind</text></g>
+    <g id="mech-dichotomisation" inkscape:label="mech-dichotomisation"><circle id="mech-dichotomisation-mark" cx="1040" cy="330" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-dichotomisation-label" x="1058" y="335">Dichotomisation</text></g>
+    <g id="mech-natural" inkscape:label="mech-natural"><circle id="mech-natural-mark" cx="1020" cy="440" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-natural-label" x="1038" y="445">Meat as natural</text></g>
+    <g id="mech-normal" inkscape:label="mech-normal"><circle id="mech-normal-mark" cx="1050" cy="510" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-normal-label" x="1068" y="515">Meat as normal</text></g>
+    <g id="mech-nice" inkscape:label="mech-nice"><circle id="mech-nice-mark" cx="1020" cy="580" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-nice-label" x="1038" y="585">Meat as nice</text></g>
+    <g id="mech-necessary" inkscape:label="mech-necessary"><circle id="mech-necessary-mark" cx="1030" cy="680" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-necessary-label" x="1048" y="685">Meat as necessary</text></g>
+    <g id="mech-third-party" inkscape:label="mech-third-party"><circle id="mech-third-party-mark" cx="1060" cy="750" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-third-party-label" x="1078" y="755">Third-party blame</text></g>
+    <g id="mech-outrage" inkscape:label="mech-outrage"><circle id="mech-outrage-mark" cx="1020" cy="820" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-outrage-label" x="1038" y="825">Moral outrage</text></g>
+
+    <g id="mech-behaviour-change" inkscape:label="mech-behaviour-change"><circle id="mech-behaviour-change-mark" cx="1380" cy="380" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-behaviour-change-label" x="1398" y="385">Behavioural change</text></g>
+    <g id="outcome-maintained" inkscape:label="outcome-maintained"><circle id="outcome-maintained-mark" cx="1380" cy="600" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="outcome-maintained-label" x="1398" y="605">Same, or more, meat</text></g>
+
+    <g id="mech-aware-justify" inkscape:label="mech-aware-justify"><circle id="mech-aware-justify-mark" cx="1380" cy="790" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-aware-justify-label" x="1398" y="795">Awareness as justification</text></g>
+    <g id="mech-attachment" inkscape:label="mech-attachment"><circle id="mech-attachment-mark" cx="1380" cy="860" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="mech-attachment-label" x="1398" y="865">Meat attachment</text></g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="Stops" id="layer-stops" style="font-family:sans-serif;font-size:16px;fill:#222222">
+    <g id="stop-home" inkscape:label="stop-home"><rect id="stop-home-mark" x="111" y="931" width="18" height="18" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="stop-home-label" x="138" y="945">Home</text></g>
+    <g id="stop-high-street" inkscape:label="stop-high-street"><rect id="stop-high-street-mark" x="471" y="931" width="18" height="18" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="stop-high-street-label" x="498" y="945">High street</text></g>
+    <g id="stop-smokehouse" inkscape:label="stop-smokehouse"><rect id="stop-smokehouse-mark" x="791" y="931" width="18" height="18" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="stop-smokehouse-label" x="818" y="945">Smokehouse</text></g>
+    <g id="stop-market" inkscape:label="stop-market"><rect id="stop-market-mark" x="1111" y="931" width="18" height="18" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/><text id="stop-market-label" x="1138" y="945">Market</text></g>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="Stage labels" id="layer-stage-labels" style="font-family:sans-serif;font-size:13px;letter-spacing:1.5px;fill:#777777">
+    <text id="stage-triggers" x="100" y="200">WHAT SETS IT OFF</text>
+    <text id="stage-prevention" x="420" y="200">PREVENTION</text>
+    <text id="stage-reduction" x="1000" y="200">REDUCTION</text>
+    <text id="stage-outcomes" x="1360" y="330">OUTCOMES</text>
+    <text id="stage-beyond" x="1360" y="750">BEYOND THE FRAMEWORK</text>
+    <text id="stage-walk" x="100" y="900">THE WALK</text>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="Style samples (the prototype copies these)" id="layer-style" style="font-family:sans-serif;font-size:13px;fill:#555555">
+    <circle id="style-used" cx="1180" cy="60" r="9" style="fill:#222222;stroke:#222222;stroke-width:1.5"/>
+    <text id="style-used-label" x="1196" y="65">used</text>
+    <circle id="style-offered" cx="1260" cy="60" r="9" style="fill:#ffffff;stroke:#222222;stroke-width:1.5"/>
+    <text id="style-offered-label" x="1276" y="65">possible</text>
+    <circle id="style-absent" cx="1360" cy="60" r="9" style="fill:none;stroke:#999999;stroke-width:1.5;stroke-dasharray:3,3"/>
+    <text id="style-absent-label" x="1376" y="65">not on this walk</text>
+    <path id="route-style" d="M1170 110 C 1210 90, 1250 130, 1290 108 S 1360 92, 1400 112" style="fill:none;stroke:#222222;stroke-width:2;stroke-dasharray:6,5;stroke-linecap:round"/>
+    <text id="route-style-label" x="1414" y="116">route</text>
+    <path id="link-style" d="M1170 150 L 1400 150" style="fill:none;stroke:#999999;stroke-width:1"/>
+    <text id="link-style-label" x="1414" y="155">connection</text>
+  </g>
+
+  <g inkscape:groupmode="layer" inkscape:label="Notes (delete when done)" id="layer-notes" style="font-family:sans-serif;fill:#777777">
+    <text id="note-title" x="40" y="56" style="font-size:22px;fill:#222222;font-weight:bold">MRCD map starter kit</text>
+    <text id="note-1" x="40" y="86" style="font-size:14px">Move, restyle or redraw anything. Keep each object's ID (Object &gt; Object Properties) so the prototype can find it.</text>
+    <text id="note-2" x="40" y="108" style="font-size:14px">Restyle the samples at top right to set how used, possible and absent marks, the route and connections look. Full rules: Map brief tab.</text>
+  </g>
+</svg>
